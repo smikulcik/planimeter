@@ -39,7 +39,7 @@ public class PlanimeterGUI implements ActionListener, MouseListener, MouseMotion
 
     public void go() {
 
-        frame = new JFrame("Planimeter - (c)2012 Simon Mikulcik");
+        frame = new JFrame("Planimeter");
         label = new JLabel("");
         button = new JButton("New Shape");
         button.addActionListener(this);
@@ -113,11 +113,16 @@ public class PlanimeterGUI implements ActionListener, MouseListener, MouseMotion
         if(polygon.npoints>=3){
             PlanimeterAnalysis pa = Planimeter.calculateAreaTrap(polygon);
             double area = (int)(100*pa.area)/100.;
+            double perimeter = (int)(100*pa.perimeter)/100.;
+            double ratio = (int)(100*(pa.area/(pa.perimeter/2d)))/100.;
             CM = pa.center_of_mass;
             label.setText(
                 buttonPressed + "Area = " + area +
                 " Center of Mass = (" +
-                (int)(pa.center_of_mass.getX())/100. + ","+(int)(pa.center_of_mass.getY())/100.+")");
+                (int)(pa.center_of_mass.getX())/100. + ","+
+                (int)(pa.center_of_mass.getY())/100.+")" +
+                " Perimeter = " + perimeter + 
+                " Ratio: " + ratio );
         }
         frame.repaint();
     }

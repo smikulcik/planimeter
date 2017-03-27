@@ -12,9 +12,11 @@ package planimeter;
 public class PlanimeterAnalysis {
     public double area;
     public PointD center_of_mass;
+    public double perimeter;
     
     public PlanimeterAnalysis(){
         area = 0;
         center_of_mass = new PointD(0,0);
+        perimeter = 0;
     }
 }

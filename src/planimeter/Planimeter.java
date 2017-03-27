@@ -23,7 +23,7 @@ public class Planimeter {
             answer+=4*f(p.npoints-2,p) + f(p.npoints-1,p);
             answer/=6;
         }
-        return 0;
+        return answer;
     }
     public static PlanimeterAnalysis calculateAreaTrap(Polygon p){
         PlanimeterAnalysis analysis = new PlanimeterAnalysis();
@@ -64,6 +64,25 @@ public class Planimeter {
             area = -area;
             analysis.area = area;
         }
+        
+        
+        double perimeter = 0;
+        if(p.npoints > 1){
+            for(int i=1;i<p.npoints;i++){
+                perimeter += dist(
+                        p.xpoints[i],
+                        p.ypoints[i],
+                        p.xpoints[i-1],
+                        p.ypoints[i-1]);
+            }
+            perimeter += dist(
+                p.xpoints[0],
+                p.ypoints[0],
+                p.xpoints[p.npoints-1],
+                p.ypoints[p.npoints-1]);
+        }
+        analysis.perimeter = perimeter/100.;
+        
         return analysis;
     }
     
@@ -80,6 +99,10 @@ public class Planimeter {
         //System.out.println(dy*x-dx*y + " = <"+dx+","+dy+"> * <"+ -1*p.ypoints[t]+","+p.xpoints[t]+"> : npoints="+p.npoints);
         
         return dy*x - dx*y;
+    }
+    
+    private static double dist(double x1, double y1, double x2, double y2){
+        return Math.sqrt((x1-x2)*(x1-x2) + (y1 - y2)*(y1 - y2));
     }
     
 }
