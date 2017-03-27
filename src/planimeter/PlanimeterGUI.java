@@ -122,7 +122,8 @@ public class PlanimeterGUI implements ActionListener, MouseListener, MouseMotion
                 (int)(pa.center_of_mass.getX())/100. + ","+
                 (int)(pa.center_of_mass.getY())/100.+")" +
                 " Perimeter = " + perimeter + 
-                " Ratio: " + ratio );
+                " Ratio = " + ratio +
+                " PI = " + area/ratio);
         }
         frame.repaint();
     }
